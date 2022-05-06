@@ -1,16 +1,20 @@
 import React, {FC} from 'react';
-import {Route, Navigate, Routes, BrowserRouter} from "react-router-dom";
-import {privateRoutes, publicRoutes} from "../router";
+import {Route, Navigate, Routes} from "react-router-dom";
+import {privateRoutes, publicRoutes, RouteNames} from "../router";
 
 export const AppRouter: FC = () => {
-    const auth = false;
+    const auth = true;
 
-    return <BrowserRouter>
-        <Routes>
-            {auth ? privateRoutes.map(route => <Route key={route.path} path={route.path}
-                                                      element={<route.element/>}/>) : publicRoutes.map(route => <Route
-                key={route.path} path={route.path} element={<route.element/>}/>)}
-        </Routes>
-    </BrowserRouter>
+    return (
+        auth ? <Routes>
+                {privateRoutes.map(route => <Route key={route.path} path={route.path} element={<route.element/>}/>)}
+                <Route path={"*"} element={<Navigate to={RouteNames.EVENT}/>}/>
+            </Routes>
 
+            :
+            <Routes>
+                {publicRoutes.map(route => <Route key={route.path} path={route.path} element={<route.element/>}/>)}
+                <Route path={"*"} element={<Navigate to={RouteNames.LOGIN}/>}/>
+            </Routes>
+    )
 }
