@@ -1,11 +1,17 @@
 import React from 'react';
-import {BrowserRouter, Routes} from "react-router-dom";
 import {AppRouter} from "./components/AppRouter";
+import {Layout} from "antd";
+import {Navbar} from "./components/Navbar/Navbar";
+import './App.css'
 
 export const App = () => {
     return (
-        <div>
-            <AppRouter />
-        </div>
+            <Layout>
+                <Navbar />
+                <>
+                    <AppRouter />
+                </>
+            </Layout>
+
     );
 };
