@@ -25,7 +25,7 @@ export const Navbar: FC = () => {
     return (
         <Layout.Header>
             <Row justify="end">
-                <div className={styles.userName}>Username</div>
+                <div className={styles.userName}>Alex</div>
                 {isAuth ? <Menu className={styles.menu} theme="dark" mode='horizontal' selectable={false}>
                     <Menu.Item
                         key='01'
