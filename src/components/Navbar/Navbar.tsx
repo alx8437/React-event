@@ -5,27 +5,26 @@ import {useNavigate} from "react-router-dom";
 import {RouteNames} from "../../router";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
-
+import {logout} from "../../store/reducers/auth/thunk-creators";
 
 export const Navbar: FC = () => {
-    const {isAuth} = useTypedSelector(state => state.authReducer)
     const dispatch = useDispatch()
-
     const navigate = useNavigate();
+
+    const {isAuth, user} = useTypedSelector(state => state.authReducer)
 
     const onLogin = () => {
         navigate(RouteNames.LOGIN)
     }
 
     const onExit = () => {
-        console.log('exit')
+        dispatch<any>(logout());
     }
-
 
     return (
         <Layout.Header>
             <Row justify="end">
-                <div className={styles.userName}>Alex</div>
+                <div className={styles.userName}>{user.username}</div>
                 {isAuth ? <Menu className={styles.menu} theme="dark" mode='horizontal' selectable={false}>
                     <Menu.Item
                         key='01'
