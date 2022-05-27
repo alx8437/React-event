@@ -1,11 +1,10 @@
 import React, {FC} from 'react';
 import {Button, Form, Input} from "antd";
 import {rules} from "../../utils/rules";
-import {useDispatch} from "react-redux";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import styles from './LoginForm.module.scss'
 import {useInput} from "../../hooks/useInput";
-import {loading} from "../../store/reducers/auth/thunk-creators";
+import {useActions} from "../../hooks/useActions";
 
 interface IFormItems {
   username: string,
@@ -13,7 +12,8 @@ interface IFormItems {
 }
 
 export const LoginForm: FC = () => {
-  const dispatch = useDispatch();
+  const {loading} = useActions()
+
   const {isLoading, error} = useTypedSelector(state => state.authReducer)
 
   const username = useInput('');
@@ -21,13 +21,12 @@ export const LoginForm: FC = () => {
 
   const submit = (values: IFormItems) => {
     const {username, password} = values
-    dispatch<any>(loading(username, password))
+    loading(username, password)
   }
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Error info", errorInfo)
   }
-
 
   return (
     <Form

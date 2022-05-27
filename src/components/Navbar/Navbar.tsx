@@ -4,12 +4,11 @@ import styles from './Navbar.module.scss'
 import {useNavigate} from "react-router-dom";
 import {RouteNames} from "../../router";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useDispatch} from "react-redux";
-import {logout} from "../../store/reducers/auth/thunk-creators";
+import {useActions} from "../../hooks/useActions";
 
 export const Navbar: FC = () => {
-    const dispatch = useDispatch()
     const navigate = useNavigate();
+    const {logout} = useActions()
 
     const {isAuth, user} = useTypedSelector(state => state.authReducer)
 
@@ -18,7 +17,7 @@ export const Navbar: FC = () => {
     }
 
     const onExit = () => {
-        dispatch<any>(logout());
+        logout();
     }
 
     return (
