@@ -1,10 +1,5 @@
-import React, {FC} from 'react';
-
+import React, { FC } from "react";
 
 export const Event: FC = () => {
-    return (
-        <div>
-            EVENT
-        </div>
-    );
+  return <div>EVENT</div>;
 };

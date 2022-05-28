@@ -1,5 +1,5 @@
-import {authReducer} from "./auth";
+import { authReducer } from "./auth";
 
 export default {
-    authReducer
-}
+  authReducer,
+};
