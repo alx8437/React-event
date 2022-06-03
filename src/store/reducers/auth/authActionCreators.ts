@@ -5,9 +5,9 @@ import {
   ISetIsLoading,
   ISetUserAction,
 } from "./types";
-import { IUser } from "../../../models/IUser";
+import { IUser } from "../../../types/IUser";
 import { TAppDispatch } from "../../index";
-import axios from "axios";
+import UserService from "../../../api/UserServise";
 
 export const authActionCreators = {
   setAuth: (isAuth: boolean): ISetAuthAction => ({
@@ -31,7 +31,7 @@ export const authActionCreators = {
       dispatch(authActionCreators.setIsLoading(true));
       setTimeout(async () => {
         try {
-          const response = await axios.get<IUser[]>("./users.json");
+          const response = await UserService.getUsers();
           const mockUser: IUser | undefined = response.data.find(
             (user) => user.username === username && user.password === password
           );

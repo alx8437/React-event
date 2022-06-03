@@ -4,7 +4,7 @@ import { Layout } from "antd";
 import { Navbar } from "./components/Navbar/Navbar";
 import "./App.css";
 import { useActions } from "./hooks/useActions";
-import { IUser } from "./models/IUser";
+import { IUser } from "./types/IUser";
 
 export const App = () => {
   const { setAuth, setUser } = useActions();
