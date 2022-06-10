@@ -22,4 +22,8 @@ export const eventActionCreators = {
       console.log(e);
     }
   },
+  createEvent: (event: IEvent) => async (dispatch: TAppDispatch) => {
+    try {
+    } catch (e) {}
+  },
 };

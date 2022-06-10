@@ -5,13 +5,14 @@ import { Navbar } from "./components/Navbar/Navbar";
 import "./App.css";
 import { useActions } from "./hooks/useActions";
 import { IUser } from "./types/IUser";
+import { LocalStorageService } from "./services/LocalStorageService";
 
 export const App = () => {
   const { setAuth, setUser } = useActions();
 
   useEffect(() => {
-    const isAuth = localStorage.getItem("auth");
-    const username = localStorage.getItem("username");
+    const username = LocalStorageService.getValue("username");
+    const isAuth = LocalStorageService.getValue("auth");
 
     if (isAuth && username) {
       setAuth(true);

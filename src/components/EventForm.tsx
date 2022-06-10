@@ -5,6 +5,7 @@ import { Moment } from "moment";
 import { IUser } from "../types/IUser";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { IEvent } from "../types/IEvent";
+import { formatDate } from "../utils/formatDate";
 
 interface IEventFormValues {
   description: string;
@@ -28,7 +29,7 @@ const EventForm: FC<IEventFormProps> = ({ guests, submit }) => {
     const event: IEvent = {
       guest,
       author: currentUser.username,
-      data: date.format("YYYY-MM-DD"),
+      data: formatDate(date.toDate()),
       description,
     };
 

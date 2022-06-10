@@ -8,6 +8,7 @@ import {
 import { IUser } from "../../../types/IUser";
 import { TAppDispatch } from "../../index";
 import UserService from "../../../api/UserServise";
+import { LocalStorageService } from "../../../services/LocalStorageService";
 
 export const authActionCreators = {
   setAuth: (isAuth: boolean): ISetAuthAction => ({
@@ -36,8 +37,8 @@ export const authActionCreators = {
             (user) => user.username === username && user.password === password
           );
           if (mockUser) {
-            localStorage.setItem("auth", "true");
-            localStorage.setItem("username", mockUser.username);
+            LocalStorageService.setValue("auth", true);
+            LocalStorageService.setValue("username", mockUser.username);
             dispatch(authActionCreators.setAuth(true));
             dispatch(authActionCreators.setUser(mockUser));
           } else {
@@ -52,8 +53,8 @@ export const authActionCreators = {
       }, 1000);
     },
   logout: () => (dispatch: TAppDispatch) => {
-    localStorage.removeItem("auth");
-    localStorage.removeItem("username");
+    LocalStorageService.removeValue("auth");
+    LocalStorageService.removeValue("username");
     dispatch(authActionCreators.setAuth(false));
     dispatch(authActionCreators.setUser({} as IUser));
     dispatch(authActionCreators.setError(""));
