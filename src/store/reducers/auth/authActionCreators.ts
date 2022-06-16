@@ -39,8 +39,8 @@ export const authActionCreators = {
           if (mockUser) {
             LocalStorageService.setValue("auth", true);
             LocalStorageService.setValue("username", mockUser.username);
-            dispatch(authActionCreators.setAuth(true));
             dispatch(authActionCreators.setUser(mockUser));
+            dispatch(authActionCreators.setAuth(true));
           } else {
             dispatch(
               authActionCreators.setError("Incorrect username or password")

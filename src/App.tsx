@@ -18,7 +18,7 @@ export const App = () => {
       setAuth(true);
       setUser({ username } as IUser);
     }
-  }, [setAuth, setUser]);
+  }, []);
 
   return (
     <Layout>

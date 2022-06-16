@@ -47,16 +47,25 @@ const EventForm: FC<IEventFormProps> = ({ guests, submit }) => {
   return (
     <Form onFinish={onSubmitEvent}>
       <Form.Item
+        labelCol={{ span: 5 }}
         label="Description"
         name="description"
         rules={[rules.required()]}
       >
         <Input />
       </Form.Item>
-      <Form.Item label="Date" name="date" rules={[rules.required()]}>
+      <Form.Item
+        labelCol={{ span: 5 }}
+        label="Date"
+        name="date"
+        rules={[
+          rules.required(),
+          rules.isDateAfter("Date should not be after today"),
+        ]}
+      >
         <DatePicker />
       </Form.Item>
-      <Form.Item label="User list" name="guest">
+      <Form.Item labelCol={{ span: 5 }} label="User list" name="guest">
         <Select style={{ width: 120 }}>{selectOptions()}</Select>
       </Form.Item>
       <Form.Item>

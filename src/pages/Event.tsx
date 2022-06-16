@@ -8,23 +8,26 @@ import { useTypedSelector } from "../hooks/useTypedSelector";
 import { IEvent } from "../types/IEvent";
 
 export const Event: FC = () => {
-  const { fetchGuests } = useActions();
-  const guests = useTypedSelector((state) => state.eventReducer.guests);
+  const { fetchGuests, createEvent, fetchEvents } = useActions();
+  const { user } = useTypedSelector((state) => state.authReducer);
+  const { events } = useTypedSelector((state) => state.eventReducer);
+  const { guests } = useTypedSelector((state) => state.eventReducer);
 
   useEffect(() => {
     fetchGuests();
+    fetchEvents(user.username);
   }, []);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const onSubmitEvent = (event: IEvent) => {
-    console.log(event);
+    createEvent(event);
     setIsModalVisible(false);
   };
 
   return (
     <div>
-      <EventCalendar events={[]} />
+      <EventCalendar events={events} />
       <Row>
         <Button onClick={() => setIsModalVisible(true)}>Add event</Button>
       </Row>

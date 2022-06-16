@@ -1,1 +1,1 @@
-export type TLocalStorageField = "auth" | "username";
+export type TLocalStorageField = "auth" | "username" | "events";
